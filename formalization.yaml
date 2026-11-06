@@ -1,0 +1,189 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/formalization.schema.json
+version: "v0.4"
+
+project:
+  name: "Gale's feasibility theorem, the Gale–Ryser theorem and Hoffman's circulation theorem"
+  description: >-
+    A Lean 4 / Mathlib formalization of D. Gale, A theorem on flows in networks (Pacific J. Math. 7,
+    1957) and of Hoffman's circulation theorem (A. J. Hoffman, 1960, in the form of A. Schrijver, A
+    Course in Combinatorial Optimization, Theorems 4.6 and 4.7). A network is a finite node type N
+    with capacities c : N → N → ℝ, c ≥ 0 (finite capacities only); a flow is f : N → N → ℝ with
+    f x y + f y x = 0 and f ≤ c; a demand d : N → ℝ is feasible if some flow has net inflow
+    ∑_y f y x ≥ d x at every node. feasibility: d is feasible if and only if d(Sᶜ) ≤ c(S, Sᶜ) for
+    every S ⊆ N (Gale's Feasibility Theorem). feasibility_int: the same for integer c and d with an
+    integer flow (Gale's remark). feasibility_second: Gale's second formulation (for every set Y of
+    nodes of positive demand, some flow meets the demand at all nodes of nonpositive demand and the
+    aggregate demand of Y). gale_ryser_unsorted, gale_ryser: for a : Fin m → ℕ and b : Fin n → ℕ, a
+    0-1 matrix with row sums at most a i and column sums b j exists if and only if
+    ∑_{j∈Y} b j ≤ ∑_i min(a i, |Y|) for all column sets Y, equivalently, for b nonincreasing,
+    ∑_{j<k} b j ≤ ∑_{j<k} #{i | j < a i} for all k ≤ n (Gale's Problem I, §3). gale_ryser_exact: if
+    moreover ∑ a = ∑ b, the row sums can be made exactly a (the Gale–Ryser theorem). hoffman,
+    hoffman_int: on a finite directed multigraph (arc type A, tail and head maps src, tgt : A → V)
+    with bounds d ≤ c on the arcs (real, respectively integer), there is a circulation f (real,
+    respectively integer) with d ≤ f ≤ c if and only if d(δ^in(U)) ≤ c(δ^out(U)) for every U ⊆ V.
+    Eight statements; no definitions beyond Mathlib's.
+  authors:
+    - "Juan Pablo Traverso Gianini"
+  license: "Apache-2.0"
+  responsible_maintainers:
+    - "Juan Pablo Traverso Gianini"
+
+classification:
+  arxiv: ["math.CO", "math.OC"]
+  msc2020: ["90B10", "05C21", "05B20", "90C35"]
+
+repository:
+  role: "substantive-development"
+
+sources:
+  - title: "A theorem on flows in networks"
+    authors:
+      - "David Gale"
+    id: "doi:10.2140/pjm.1957.7.1073"
+    type: "paper"
+    location: "Pacific Journal of Mathematics 7 (1957), 1073–1082; Feasibility Theorem, Remark, second formulation (§2) and the theorem on Problem I (§3)."
+    relationship: "formalizes"
+    note: >-
+      Formalized: the Feasibility Theorem for finite nonnegative real capacities, its integral
+      version (Remark), the second formulation, and the criterion for Problem I (0-1 matrices with
+      row sums at most a_i and column sums b_j), with the Gale–Ryser corollary for equal totals.
+      Not formalized: infinite capacities, the general ordered-group version, the duality
+      {a_i}** = {a_i} of dual sequences, and the n-step filling procedure. The proof of the
+      Feasibility Theorem follows Gale's (super source and sink, minimum cut); the criterion for
+      Problem I is derived from the integral Feasibility Theorem by an unsorted criterion instead of
+      Gale's second formulation. The formalization is by a different author; the article's author
+      was not involved.
+    license: "unknown"
+    author_endorsement: "n/a"
+  - title: "Some recent applications of the theory of linear inequalities to extremal combinatorial analysis"
+    authors:
+      - "A. J. Hoffman"
+    id: "doi:10.1090/psapm/010/0114759"
+    type: "paper"
+    location: "Combinatorial Analysis, Proceedings of Symposia in Applied Mathematics 10, American Mathematical Society (1960), 113–127"
+    relationship: "formalizes"
+    note: >-
+      Hoffman's circulation theorem, stated here as in Schrijver's course (next source); the 1960
+      article itself was not consulted. The proof is not Hoffman's: it is derived from Gale's
+      Feasibility Theorem. The formalization is by a different author; the article's author was not
+      involved.
+    license: "unknown"
+    author_endorsement: "n/a"
+  - title: "A Course in Combinatorial Optimization"
+    authors:
+      - "Alexander Schrijver"
+    type: "web"
+    location: "Lecture notes, version of 23 March 2017, https://homepages.cwi.nl/~lex/files/dict.pdf, Section 4.5, Theorems 4.6 and 4.7"
+    relationship: "formalizes"
+    note: >-
+      Source of the statements of Hoffman's circulation theorem (Theorem 4.6) and its integral
+      version (Theorem 4.7) used here. Exercise 4.13 (rounding circulations) is not formalized.
+    license: "all rights reserved"
+    author_endorsement: "n/a"
+  - title: "Combinatorial properties of matrices of zeros and ones"
+    authors:
+      - "H. J. Ryser"
+    id: "doi:10.4153/CJM-1957-044-3"
+    type: "paper"
+    location: "Canadian Journal of Mathematics 9 (1957), 371–377"
+    relationship: "background"
+    note: "Ryser's independent proof of the criterion for 0-1 matrices with given row and column sums."
+    license: "unknown"
+    author_endorsement: "n/a"
+  - title: "Maximal flow through a network"
+    authors:
+      - "L. R. Ford"
+      - "D. R. Fulkerson"
+    id: "doi:10.4153/CJM-1956-045-5"
+    type: "paper"
+    location: "Canadian Journal of Mathematics 8 (1956), 399–404"
+    relationship: "background"
+    note: "The max-flow/min-cut theorem on which Gale's proof rests (formalized in the dependency PALOMAR-2026-10-15-000008)."
+    license: "unknown"
+    author_endorsement: "n/a"
+
+related_formalizations:
+  - id: "PALOMAR-2026-10-15-000008 (jtraverso/dross-fractional-triangle-decomposition @ 7720b7b)"
+    relationship: "builds-on"
+    note: >-
+      Pinned dependency: its finite max-flow/min-cut theorem (module LeanPool.MaxFlowMinCut,
+      namespace Contrib.MaxFlowMinCut: Network, Flow, Cut, maxflow_eq_mincut,
+      Flow.value_eq_flow_across) is imported, not copied, for the Feasibility Theorem.
+  - id: "PALOMAR-2026-11-06-000003 (jtraverso/baranyai-theorem @ 0ff6d6f)"
+    relationship: "builds-on"
+    note: >-
+      Pinned dependency: its integral max-flow theorem (module BaranyaiLib.IntegralFlow,
+      Baranyai.exists_integral_maxflow) is imported, not copied, for the integral Feasibility
+      Theorem.
+
+status:
+  scope: >-
+    Eight statements: Gale's Feasibility Theorem over ℝ and over ℤ, its second formulation, Gale's
+    criterion for 0-1 matrices with row sums at most a_i and column sums b_j (unsorted and sorted
+    forms), the Gale–Ryser theorem for equal totals, and Hoffman's circulation theorem over ℝ and
+    over ℤ. Not formalized: infinite capacities, Gale's n-step procedure for Problem I, the duality
+    of dual sequences, and Schrijver's Exercise 4.13.
+  sorry_count: 0
+  sorry_in_definitions: 0
+  axioms: []
+
+automation:
+  methods:
+    - method: "agent"
+      models: ["Claude Opus 5.5"]
+      framework: "Claude Code (Anthropic)"
+      tool_setup: >-
+        Wrote the Lean development (directory GaleHoffmanLib/), the Challenge/Solution pair and the
+        packaging under the author's direction, checked with lake build, #print axioms and a
+        comparison of the elaborated Challenge and Solution statements (pp.all) (Lean
+        v4.35.0-rc3, Mathlib c55e6e786f49471c72fbddbec5415808896aec1e).
+      cost:
+        wall_time: "a few hours"
+        spend_usd: "subscription-based"
+        hardware: "local machine"
+      prompting_notes: "Natural-language instructions in Spanish, directed by the author."
+  spend_usd: "subscription-based"
+  notes: >-
+    The results were chosen by the human author; the Lean development is AI-written under the
+    author's direction and mechanically verified: no sorry, axioms limited to propext,
+    Classical.choice and Quot.sound, identical elaborated statements in the Challenge and the
+    Solution.
+
+fidelity:
+  divergences: >-
+    Capacities are finite nonnegative reals (Gale allows +∞) or nonnegative integers. Gale's flow
+    on N × N is a function f : N → N → ℝ with f x y + f y x = 0 and f ≤ c; f(N, x) is
+    ∑_y f y x; d(S') and c(S, S') are written ∑ x ∈ Sᶜ, d x and ∑ x ∈ S, ∑ y ∈ Sᶜ, c x y. In
+    Problem I the integers a_i, b_j are nonnegative (Gale assumes them positive), indexed by Fin m
+    and Fin n; the dual sequence a*_j (j ≥ 1) is written #{i | j < a i} for j ≥ 0 (that is,
+    a*_{j+1}), and Gale's condition for all k is stated for k ≤ n (it is automatic for k > n with
+    b_j = 0 beyond n). The graph of Hoffman's theorem is a finite arc type with tail and head maps
+    (parallel arcs and loops allowed); δ^in(U) and δ^out(U) are the arcs entering and leaving U;
+    a circulation has, at every vertex, the same total on the arcs entering and leaving it.
+
+review:
+  status: "agent-reviewed"
+  reviewers:
+    - "Claude Opus 5.5 (AI agent in Claude Code, acting for the author)"
+  notes: >-
+    Agent review by Claude Opus 5.5, distinct from the mechanical verification: the agent compared
+    the statements with Gale's paper (Feasibility Theorem, Remark, second formulation, Problem I)
+    and with Theorems 4.6 and 4.7 of Schrijver's course, and checked the degenerate cases (empty
+    node set, S = ∅ and S = N, no rows or no columns, no arcs). The author directed the work and
+    chose the results. No independent human review of the formalization has been performed. The
+    results are classical; no mathematical novelty is claimed.
+
+alignment:
+  namespace: "GaleHoffman"
+  statements:
+    - {source: "Gale (1957), Feasibility Theorem", lean: "GaleHoffman.feasibility", module: "GaleHoffmanChallenge", status: "proved"}
+    - {source: "Gale (1957), Remark (integral demands and capacities)", lean: "GaleHoffman.feasibility_int", module: "GaleHoffmanChallenge", status: "proved"}
+    - {source: "Gale (1957), second formulation of the Feasibility Theorem", lean: "GaleHoffman.feasibility_second", module: "GaleHoffmanChallenge", status: "proved"}
+    - {source: "Gale (1957), §3, Problem I (criterion of formula (13) with the second formulation)", lean: "GaleHoffman.gale_ryser_unsorted", module: "GaleHoffmanChallenge", status: "proved"}
+    - {source: "Gale (1957), §3, theorem on Problem I", lean: "GaleHoffman.gale_ryser", module: "GaleHoffmanChallenge", status: "proved"}
+    - {source: "Gale (1957), §3, equal totals (Gale–Ryser theorem; Ryser 1957)", lean: "GaleHoffman.gale_ryser_exact", module: "GaleHoffmanChallenge", status: "proved"}
+    - {source: "Hoffman (1960); Schrijver, A Course in Combinatorial Optimization, Theorem 4.6", lean: "GaleHoffman.hoffman", module: "GaleHoffmanChallenge", status: "proved"}
+    - {source: "Schrijver, A Course in Combinatorial Optimization, Theorem 4.7", lean: "GaleHoffman.hoffman_int", module: "GaleHoffmanChallenge", status: "proved"}
+
+acknowledgements: >-
+  Mathlib and the Lean community.

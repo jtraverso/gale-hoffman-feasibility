@@ -1,0 +1,21 @@
+{
+  "challenge_module": "GaleHoffmanChallenge",
+  "solution_module": "GaleHoffmanSolution",
+  "theorem_names": [
+    "GaleHoffman.feasibility",
+    "GaleHoffman.feasibility_int",
+    "GaleHoffman.feasibility_second",
+    "GaleHoffman.gale_ryser_unsorted",
+    "GaleHoffman.gale_ryser",
+    "GaleHoffman.gale_ryser_exact",
+    "GaleHoffman.hoffman",
+    "GaleHoffman.hoffman_int"
+  ],
+  "definition_names": [],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "enable_nanoda": true
+}

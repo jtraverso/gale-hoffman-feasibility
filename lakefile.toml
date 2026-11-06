@@ -1,0 +1,35 @@
+name = "gale_hoffman"
+version = "0.1.0"
+defaultTargets = ["GaleHoffmanLib", "GaleHoffmanChallenge", "GaleHoffmanSolution"]
+requiresModuleSystem = true
+
+[leanOptions]
+relaxedAutoImplicit = false
+weak.linter.mathlibStandardSet = true
+
+[[require]]
+name = "mathlib"
+scope = "leanprover-community"
+rev = "v4.35.0-rc3"
+
+[[require]]
+name = "dross"
+git = "https://github.com/jtraverso/dross-fractional-triangle-decomposition"
+rev = "7720b7b591e606d5a56f1d935d8be650dcbf6c6f"
+
+[[require]]
+name = "baranyai_factorization"
+git = "https://github.com/jtraverso/baranyai-theorem"
+rev = "0ff6d6f4005b0b68114e0b99e6d342742918b629"
+
+[[lean_lib]]
+name = "GaleHoffmanLib"
+globs = ["GaleHoffmanLib.+"]
+
+[[lean_lib]]
+name = "GaleHoffmanChallenge"
+roots = ["GaleHoffmanChallenge"]
+
+[[lean_lib]]
+name = "GaleHoffmanSolution"
+roots = ["GaleHoffmanSolution"]
